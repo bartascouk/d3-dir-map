@@ -1,8 +1,13 @@
 lines = open("dirs.log", "r")
 
+
+data = []
+
 for line in lines:
     values = line.split("/")
-    #print('1 ', values[0],'2 ', values[1], '3 ', values[2] )
-    print(values)
-lines.close()
-~                    
+    values.pop(0)
+    values[len(values)-1] = values[len(values)-1][:-1] 
+    data.append(values)
+lines.close()    
+
+print(data)     

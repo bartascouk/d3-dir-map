@@ -1,0 +1,10 @@
+remove the dirst line which of the file which is just a ".""
+
+
+prepping data for this graph
+https://beta.observablehq.com/@mbostock/d3-radial-tidy-tree
+
+iterating over lines in a file
+http://interactivepython.org/runestone/static/CS152f17/Files/Iteratingoverlinesinafile.html
+
+
