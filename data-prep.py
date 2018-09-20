@@ -6,7 +6,7 @@ data = []
 for line in lines:
   values = line.split("/")
   values.pop(0)
-  values[len(values)-1] = values[len(values)-1][:-1] 
+  values[len(values)-1] = values[len(values)-1].replace('\n', '')
   data.append(values)
 lines.close()    
 
@@ -22,10 +22,8 @@ for d in data:
 # the returned value is not a list anymore
 # list() converst output from set back to a list
 levelOne = list(set(levelOne))
-# print(levelOne)
 
 sameParents = []
-
 for l in levelOne:
   # jsonData["children"].append({"name": l, "children": []})
   sameParent = []
@@ -33,52 +31,36 @@ for l in levelOne:
     if d[0] == l:
       sameParent.append(d)
   sameParents.append(sameParent)
-
 levelOne = None 
-# print(sameParents)
-# print(len(sameParents))
 
 embeddedChildren = []
-
 for i in sameParents:
   tempI = list(i)
   tempI.pop(0)
   i[0] = {"name": i[0][0], "children":tempI}
   i = i[0]
   embeddedChildren.append(i)
-
 sameParents = None
+
 data = embeddedChildren
-
-# print(data)
-
 for i in data:
   for a in i["children"]:
     a.pop(0)
 
-print("======")
-
-for i in data:
-  print(i)
-
 # function to amberd children of children
 # data is expected to have the following structure
-# {'name': 'bc', 'children': [
-#   ['.cache'], 
-#   ['.cache', 'abrt'], 
-#   ['dconf', 'cach']
-# ]}
-# Expected output is
-# {'name': 'bc', 'children': [
-#   ['name': '.cache', 'children': [
-#     {'name': 'folder1'},
-#     {'name': 'folder2'}
-#     ]
-#   ],
-#   ['name': 'dconf', 'children': [
-#     {'name': 'folder1'},
-#     {'name': 'folder2'}
-#     ]
-#   ]  
-# ]}
-# def embedKids(data):
+def embedKids(data):
+  for i in data:
+    kids = i['children']
+    l2 = []
+    for k in kids:
+      # print(k)
+      l2.append(k[0])
+    l2 = list(set(l2))
+    # print(l1)
+    # print(data)
+
+
+
+
+embedKids(data)

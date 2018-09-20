@@ -14,3 +14,24 @@ sameParents example:
 	[['toor'], ['toor', '.cache'], ['toor', '.cache', 'abrt'], ['toor', '.config'], ['toor', '.config', 'abrt']],
 	[['an'],['an', '.ssh'], ['an', 'toor-gitolite-ssh-keys']]
 ]
+
+
+Data Expected by embedKids
+{'name': 'bc', 'children': [
+  ['.cache'], 
+  ['.cache', 'abrt'], 
+  ['dconf', 'cach']
+]}
+Expected output is
+{'name': 'bc', 'children': [
+  ['name': '.cache', 'children': [
+    {'name': 'folder1'},
+    {'name': 'folder2'}
+    ]
+  ],
+  ['name': 'dconf', 'children': [
+    {'name': 'folder1'},
+    {'name': 'folder2'}
+    ]
+  ]  
+]}
