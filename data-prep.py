@@ -1,5 +1,6 @@
-lines = open("dirs.log", "r")
+import json
 
+lines = open("dirs.log", "r")
 
 data = []
 
@@ -47,20 +48,60 @@ for i in data:
   for a in i["children"]:
     a.pop(0)
 
-# function to amberd children of children
-# data is expected to have the following structure
-def embedKids(data):
-  for i in data:
-    kids = i['children']
-    l2 = []
+# function to ambed children of children
+# retuns an array to insert under children
+def embedKids(kidsArray):
+  kids = kidsArray
+  # print("=====")
+  # print(kids)
+  l2 = []
+  for k in kids:
+    # print(k)
+    l2.append(k[0])
+  l2 = list(set(l2))
+  ln2 = []
+  for l in l2:
+    sameParent = []
     for k in kids:
-      # print(k)
-      l2.append(k[0])
-    l2 = list(set(l2))
-    # print(l1)
-    # print(data)
+      if k[0] == l:
+        sameParent.append(k)
+    # add children key
+    l = {'name': l}
+    l['children'] = sameParent
+    # print(l)
+    ln2.append(l)
+  # print(l2)
+  return (ln2)
+
+# Embed Children for Level 1
+for d in data:
+  d['children'] = embedKids(d['children'])
+
+# Remove extraneous data
+for d in data:
+  for k in d['children']:
+    k['children'].pop(0)
+
+for d in data:
+  # print("for d in data: " + json.dumps(d))
+  for k in d['children']: 
+    # print(k)
+    # k['children'].pop(0)
+    for g in k['children']:
+      g.pop(0)
+      print(g)
+
+# for d in data:
+#   for k in d["children"]:
+#     k["children"] = embedKids(k['children'])
+
+# for d in data:
+#   for k in d['children']:
+#     for g in k['children']:
+#       g['children'].pop(0)
+
+print("=====")
+print(json.dumps(data, indent=2, sort_keys=False))
 
 
 
-
-embedKids(data)
