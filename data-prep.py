@@ -7,10 +7,7 @@ data = []
 
 for line in lines:
   values = line.split("/")
-  if len(values) == 1 and values[0] == '.\n':
-    print('removing parent dir')
-  else:
-    print(values)
+  if len(values) != 1 and values[0] != '.\n':
     values.pop(0)
     values[len(values)-1] = values[len(values)-1].replace('\n', '')
     data.append(values)
@@ -88,23 +85,28 @@ for d in data:
     k['children'].pop(0)
 
 for d in data:
-  # print("for d in data: " + json.dumps(d))
   for k in d['children']: 
-    # print(k)
-    # k['children'].pop(0)
     for g in k['children']:
       g.pop(0)
-      print(g)
+      
+for d in data:
+  for k in d['children']: 
+    for g in k['children']:
+      # print(str(type(g[0])))
+      key = {'name': g[0]}
+      k['children'] = []
+      k['children'].append(key)
+      # data[d][k][g].append({'name': g[0]})
+      # g = {'name': g}
+      
+      # print(g)
+      # k['children'].append({'name': g[0]})
+      
+      
+      # g = {'name': g}
+      # print(g)
 
-# for d in data:
-#   for k in d["children"]:
-#     k["children"] = embedKids(k['children'])
-
-# for d in data:
-#   for k in d['children']:
-#     for g in k['children']:
-#       g['children'].pop(0)
-
+print('data type: ' + str(type(data)))
 print("=====")
 print(json.dumps(data, indent=2, sort_keys=False))
 
