@@ -1,4 +1,5 @@
 import json
+import sys
 
 lines = open("dirs.log", "r")
 
@@ -6,9 +7,13 @@ data = []
 
 for line in lines:
   values = line.split("/")
-  values.pop(0)
-  values[len(values)-1] = values[len(values)-1].replace('\n', '')
-  data.append(values)
+  if len(values) == 1 and values[0] == '.\n':
+    print('removing parent dir')
+  else:
+    print(values)
+    values.pop(0)
+    values[len(values)-1] = values[len(values)-1].replace('\n', '')
+    data.append(values)
 lines.close()    
 
 jsonData = {"name": "TopFolder", "children": []}

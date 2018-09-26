@@ -9,29 +9,8 @@ http://interactivepython.org/runestone/static/CS152f17/Files/Iteratingoverlinesi
 
 {name: "top_folder", children:[{name: "Easing", size: 17010}, {name: "Easing", size: 17010}]}
 
-sameParents example:
-[
-	[['toor'], ['toor', '.cache'], ['toor', '.cache', 'abrt'], ['toor', '.config'], ['toor', '.config', 'abrt']],
-	[['an'],['an', '.ssh'], ['an', 'toor-gitolite-ssh-keys']]
-]
 
 
-Data Expected by embedKids
-{'name': 'bc', 'children': [
-  ['.cache'], 
-  ['.cache', 'abrt'], 
-  ['dconf', 'cach']
-]}
-Expected output is
-{'name': 'bc', 'children': [
-  ['name': '.cache', 'children': [
-    {'name': 'folder1'},
-    {'name': 'folder2'}
-    ]
-  ],
-  ['name': 'dconf', 'children': [
-    {'name': 'folder1'},
-    {'name': 'folder2'}
-    ]
-  ]  
-]}
+
+The script has to accept an input file and save an output file in json format
+https://www.tutorialspoint.com/python/python_command_line_arguments.htm
